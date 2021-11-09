@@ -94,48 +94,14 @@
 		end = pEnd;
 	}
 
-	// function dataFactory(data, numberOfBins) {
-	// 	var max = Math.max.apply(Math, data.map(function(o) { return o.price; }));
-	// 	max = Math.floor(max);
-	// 	var groupSize = Math.ceil(max/numberOfBins);
-	// 	var result = new Array(groupSize).fill(0);
-
-	// 	end = max;
-
-	// 	for (var i = 0; i < data.length; i++) {
-	// 		var index = data[i].price/numberOfBins;
-	// 		index = Math.floor(index);
-	// 		result[index] = result[index] == undefined ? 1 : result[index]+1;
-	// 	}
-
-	// 	return result;
-	// }
-
-	// const apiData = writable([]);
-	// const groupNumber = 10;
-
-	// onMount(async () => {
-	// 	fetch("https://development-dot-petfoodcompare.wl.r.appspot.com/v1/pet/products-list?species=dog")
-	// 	.then(response => response.json())
-	// 	.then(res => {
-	// 		apiData.set(dataFactory(res, groupNumber));
-
-	// 			console.log("data", $apiData);
-	// 	}).catch(error => {
-	// 		console.log(error);
-	// 		return [];
-	// 	});
-
-	// });
-
 </script>
 
 <div class="double-range-container">
 	<div class="histogram">
 		{#each $histogramData as item, i}
-			<div style="height: {item === 0 ? 4 : ((item/15)+4)}px" count="{item}">
+			<div style="height: {item === 0 ? 4 : ((item/10)+4)}px" count="{item}">
 				<span class="tooltip">
-					{item} <br>
+					No. of records = {item} <br>
 					${(i*groupNumber)+1} - ${((i+1)*groupNumber)+1}
 				</span>
 			</div>
@@ -222,8 +188,9 @@
 		bottom: 0;
 	}
 
-	.histogram {display:flex; align-items: end; position:relative; margin:0 0 4px;}
-	.histogram .tooltip{position:absolute;top:0; display:none; background:#fff; border-radius:3px; font-size:11px; padding:5px; box-shadow:1px 1px 1px 2px rgba(0,0,0,0.2);}
-	.histogram > div {width:100%; background:#eee; border-radius:3px 3px 0 0; margin:0 1px;}
+	.histogram {display:flex; align-items: end; position:relative; margin:15px 0 4px;}
+	.histogram .tooltip{position:absolute;left:3px; bottom:90%; display:none; background:#fff; border-radius:3px; font-size:11px; padding:5px; box-shadow:1px 1px 1px 2px rgba(0,0,0,0.2);}
+	.histogram > div {width:100%; position:relative; background:#eee; border-radius:3px 3px 0 0; margin:0 1px;}
 	.histogram > div:hover .tooltip{display:block;}
+	.histogram > div:hover {background:#ff6a00;}
 </style>

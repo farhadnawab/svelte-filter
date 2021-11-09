@@ -1,5 +1,5 @@
 <script>
-	import DoubleRangeSlider from './RangeSlider.svelte';
+	import RangeSlider from './RangeSlider.svelte';
 	import { onMount } from "svelte";
 	import { writable, derived } from 'svelte/store';
 
@@ -30,7 +30,6 @@
 	}
 
 	let histogramData = writable([]);
-	//const groupNumber = 10;
 
 	onMount(async () => {
 		fetch("https://development-dot-petfoodcompare.wl.r.appspot.com/v1/pet/products-list?species=dog")
@@ -53,7 +52,7 @@
 		<div class="row">
 			<div class="col-12 col-md-3">
 				{#if maxPrice > 0}
-				<DoubleRangeSlider bind:start bind:end bind:histogramData bind:groupNumber/>
+				<RangeSlider bind:start bind:end bind:histogramData bind:groupNumber/>
 				<div class="slider-labels">
 					<div class="label">${nice(start*maxPrice)}</div>
 					<div class="label">${nice(end*maxPrice)}</div>
